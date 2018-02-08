@@ -34,7 +34,7 @@
         "webpack-dev-server": "^2.11.1"
     },
     "scripts": {
-        "start": "node info.js",
+        "start": "node index.js",
         "heroku": "heroku create",
         "watch": "nodemon info.js",
         "build": "export NODE_ENV=production && rm -rf ./build && webpack --env.production --optimize-minimize"
