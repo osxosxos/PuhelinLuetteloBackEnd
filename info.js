@@ -5,6 +5,8 @@ const bodyParser = require('body-parser')
 app.use(express.static('build'))
 app.use(bodyParser.json())
 
+
+
 let persons = [
     {
         name: 'Arto Hellas',
@@ -54,11 +56,11 @@ app.post('/persons', (req, res) => {
     }
 
     if ( body.name === null ) {
-        res.status(404).end("nimi puuttuu!")
+        res.status(404).json("nimi puuttuu!")
     } else if (body.number === null) {
-        res.status(404).end("numero puuttuu!")
+        res.status(404).json("numero puuttuu!")
     } else if (persons.find((person) => person.name === body.name) != null) {
-        res.status(404).end("nimi on jo luettelossa!")
+        res.status(404).json("nimi on jo luettelossa!")
     } else {
         persons = persons.concat(person)
         res.json(person)
@@ -77,7 +79,7 @@ app.get('/info', (req, res) => {
 })
 
 app.get('/persons', (req, res) => {
-    res.end(JSON.stringify(persons))
+    res.json(persons)
 })
 
 app.get('/persons/:id', (req, res) => {
@@ -85,7 +87,7 @@ app.get('/persons/:id', (req, res) => {
     const person = persons.find(person => person.id == id )
 
     if ( person ) {
-        res.end(JSON.stringify(person))
+        res.json(JSON.stringify(person))
     } else {
         res.status(404).end()
     }
