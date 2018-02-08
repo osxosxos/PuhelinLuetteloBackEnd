@@ -93,7 +93,7 @@ app.get('/persons/:id', (req, res) => {
 // Tähän tulee morgan-funktio
 // tiny config => :method :url :status :res[content-length] - :response-time ms
 
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
